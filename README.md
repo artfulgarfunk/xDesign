@@ -1,6 +1,6 @@
 # xDesign
 
-## A web app made for displaying XML vehicle data for easy consumption, built in Laravel and PHP
+A web app made for displaying XML vehicle data for easy consumption, built in Laravel and PHP
 
 # Design
 I chose a simple design with the minimal necessary components, built in Laravel and using PostgreSQL for the database. Separation of concerns is key, I tried to keep the controllers "skinny" and have only presentation logic in the views.
