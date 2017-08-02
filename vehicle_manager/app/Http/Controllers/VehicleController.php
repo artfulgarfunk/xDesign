@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller
 {
+
   public function show($id)
   {
     $vehicle = \App\Vehicle::find($id);
@@ -37,7 +38,7 @@ class VehicleController extends Controller
     }
   }
 
-  public function save_single_instance()
+  public function save_single_instance($vehicle)
   {
     $instance = \App\Vehicle::create([
       'manufacturer' => $vehicle['manufacturer'],

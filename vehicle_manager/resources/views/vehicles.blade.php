@@ -8,10 +8,8 @@
     <h1> Vehicle Data </h1>
     @foreach($vehicles as $v)
       {{ Form::open(array('method' => 'get', 'action' => array('VehicleController@show', $v->id))) }}
-      {{ Form::submit('Details') }}
-      {{ $v['manufacturer'] }}
-      {{ $v['model'] }}
-      {{ Form::close() }}
+      {{ Form::submit($v['manufacturer'].' '.$v['model']) }}
+      {{ Form::close() }} <br>
     @endforeach
   </body>
 </html>
