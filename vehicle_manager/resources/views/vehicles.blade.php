@@ -6,6 +6,7 @@
   </head>
   <body>
     <h1> Vehicle Data </h1>
+    <p> Name: <?= $vehicle->manufacturer; ?> <?= $vehicle->model; ?> </p> 
     <p> Type: <?= $vehicle->type; ?> </p>
     <p> Usage: <?= $vehicle->usage; ?> </p>
     <p> License: <?= $vehicle->license_plate; ?> </p>
