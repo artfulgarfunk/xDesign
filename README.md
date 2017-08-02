@@ -14,10 +14,10 @@ The front end consists of a vehicle index page which shows the model and make of
 # Next Steps
 - Basic front end, perhaps React for displaying details
 - Bootstrap 3 for ease of use on multiple screen sizes (e.g. mobile)
+- Use of a base.html which others inherit from (stops repetition)
 - API for consumption on other platforms
 - Database authentication
-- Basic CRUD functionality for all models
-- Unistall redundant XmlParser
+- Basic CRUD functionality for models
 - Testing
 
 # Requirements
@@ -31,4 +31,3 @@ The front end consists of a vehicle index page which shows the model and make of
 - Laravel
 - PostgreSQL
 - Composer
-- XmlParser
