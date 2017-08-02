@@ -38,4 +38,4 @@ The front end consists of two pages. A vehicle index page which shows the model 
 - Run `composer update` to install dependencies
 - Run `php artisan migrate` for db migrations
 - Run `php artisan serve` to start the server
-- Visit localhost:8000 in your chosen browser
+- Visit localhost:8000/vehicles in your chosen browser
