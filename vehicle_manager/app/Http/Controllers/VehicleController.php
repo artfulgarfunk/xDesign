@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
-// use App\User;
 use App\Http\Controllers\Controller;
 use XmlParser;
 use Illuminate\Support\Facades\Storage;
 
 class VehicleController extends Controller
 {
+  public function show($id)
+  {
+    $vehicle = \App\Vehicle::find($id);
+    return view('vehicle',['vehicle' => $vehicle]);
+  }
 
   public function index()
   {
@@ -59,4 +63,6 @@ class VehicleController extends Controller
     ]);
     $instance->save();
   }
+
+
 }

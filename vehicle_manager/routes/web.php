@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/vehicles', 'VehicleController@index');
+
+Route::get('/vehicles/{id}', 'VehicleController@show');
