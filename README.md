@@ -41,6 +41,6 @@ The front end consists of two pages. A vehicle index page which shows the model 
 - Visit localhost:8000/vehicles in your chosen browser
 
 # Screenshots
-![ScreenShot1](https://{i.imgur.com/66M4kv1.png})
+![ScreenShot1](https://i.imgur.com/66M4kv1.png)
 
-![ScreenShot2](https://{i.imgur.com/N9cACVQ.png})
+![ScreenShot2](https://i.imgur.com/N9cACVQ.png)
