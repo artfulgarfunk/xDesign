@@ -39,7 +39,13 @@
               @endif
         </p>
         <p> Doors: {{ $vehicle->no_doors }} </p>
-        <p> Sunroof: {{ $vehicle->sunroof }} </p>
+        <p> Sunroof:
+            @if ($vehicle->sunroof == "true")
+                Yes
+            @else
+                No
+            @endif
+        </p>
         <p> GPS:
               @if ($vehicle->has_gps == "true")
                   Yes
