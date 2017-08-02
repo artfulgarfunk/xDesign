@@ -17,8 +17,9 @@ class VehicleController extends Controller
 
   public function index()
   {
-    // IF DB EMPTY, POPULATE WITH GIVEN DATA
+    // IF DB EMPTY, POPULATE WITH GIVEN XML DATA
     $vehicle = \App\Vehicle::find(1);
+
     if ($vehicle == null) {
       $path = resource_path('xml/VehicleSample.xml');
       $parsed_xml = simplexml_load_file($path);
@@ -31,14 +32,17 @@ class VehicleController extends Controller
     ]);
   }
 
-  public function populate($parsed_xml) {
-    for ($i = 0; $i < 19; $i ++) {
+  private function populate($parsed_xml)
+  {
+    $num = count($parsed_xml->Vehicle);
+
+    for ($i = 0; $i < $num; $i ++) {
     $vehicle = $parsed_xml->Vehicle[$i];
-      $this->save_single_instance($vehicle);
+      $this->saveSingleInstance($vehicle);
     }
   }
 
-  public function save_single_instance($vehicle)
+  private function saveSingleInstance($vehicle)
   {
     $instance = \App\Vehicle::create([
       'manufacturer' => $vehicle['manufacturer'],
@@ -64,6 +68,5 @@ class VehicleController extends Controller
     ]);
     $instance->save();
   }
-
 
 }
