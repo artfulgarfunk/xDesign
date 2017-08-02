@@ -1,11 +1,11 @@
 # xDesign
-
 A web app made for displaying XML vehicle data for easy consumption, built in Laravel and PHP
 
 # Design
 I chose a simple design with the minimal necessary components, built in Laravel and using PostgreSQL for the database. Separation of concerns is key, I tried to keep the controllers "skinny" and have only presentation logic in the views.
 
-The database was designed based on a given XML data file (see storage/VehicleSample2.xml). I used Laravels Eloquent ORM and made a new Vehicle Model with multiple sub-nodes which represent the vehicles various details; e.g. engine size.
+The database was designed based on a given XML data file (see storage/VehicleSample2.xml).
+I used Laravels Eloquent ORM and made a new Vehicle Model with multiple attributes which represent  n the vehiclze  multiple sub-nodes which represent the vehicles various details; e.g. engine size.
 
 # Next Steps
 - Basic front end, perhaps React for displaying details
@@ -15,6 +15,12 @@ The database was designed based on a given XML data file (see storage/VehicleSam
 - Database authentication
 - Individual urls for each db entry; e.g. vehicles/1 to display the first db entry.
 - Basic CRUD functionality for all models
+
+# Requirements
+- Make sense of sample vehicle data: organise and save to database
+- Meaningful db structure based on vehicle data
+- Simple fronted to display data to client
+- Optional: Create a simple API to consume the data on a 3rd part application web and/or mobile
 
 # Built with
 
