@@ -7,69 +7,55 @@ use App\Http\Controllers\Controller;
 use XmlParser;
 use Illuminate\Support\Facades\Storage;
 
-
 class VehicleController extends Controller
 {
-  public function show()
+
+  public function index()
   {
-
+    // IF DB EMPTY, POPULATE WITH GIVEN DATA
     $vehicle = \App\Vehicle::find(1);
-    if($vehicle == null) {
-    };
-    $this->populate();
+    if ($vehicle == null) {
+      $path = resource_path('xml/VehicleSample.xml');
+      $parsed_xml = simplexml_load_file($path);
+      $this->populate($parsed_xml);
+    }
 
+    $vehicles= \App\Vehicle::all();
     return view('vehicles', [
-      'vehicle' => $vehicle,
+      'vehicles' => $vehicles,
     ]);
   }
 
-  public function populate() {
-    $payload = Storage::get('VehicleSample.xml');
-    $xml = XmlParser::extract($payload);
-    $parsed_xml = $xml->parse([
-      'manufacturer' => ['uses' => 'Vehicle::manufacturer'],
-      'model' => ['uses' => 'Vehicle::model'],
-      'type' => ['uses' => 'Vehicle.type'],
-      'usage' => ['uses' => 'Vehicle.usage'],
-      'license_plate' => ['uses' => 'Vehicle.license_plate'],
-      'weight_category' => ['uses' => 'Vehicle.weight_category'],
-      'no_seats' => ['uses' => 'Vehicle.no_seats'],
-      'has_trailer' => ['uses' => 'Vehicle.has_trailer'],
-      'owner_name' => ['uses' => 'Vehicle.owner_name'],
-      'owner_company' => ['uses' => 'Vehicle.owner_company'],
-      'owner_profession' => ['uses' => 'Vehicle.owner_profession'],
-      'transmission' => ['uses' => 'Vehicle.transmission'],
-      'colour' => ['uses' => 'Vehicle.colour'],
-      'is_hgv' => ['uses' => 'Vehicle.is_hgv'],
-      'no_doors' => ['uses' => 'Vehicle.no_doors'],
-      'sunroof' => ['uses' => 'Vehicle.sunroof'],
-      'has_gps' => ['uses' => 'Vehicle.has_gps'],
-      'no_wheels' => ['uses' => 'Vehicle.no_wheels'],
-      'engine_cc' => ['uses' => 'Vehicle.engine_cc'],
-      'fuel_type' => ['uses' => 'Vehicle.fuel_type'],
-    ]);
+  public function populate($parsed_xml) {
+    for ($i = 0; $i < 19; $i ++) {
+    $vehicle = $parsed_xml->Vehicle[$i];
+      $this->save_single_instance($vehicle);
+    }
+  }
 
+  public function save_single_instance()
+  {
     $instance = \App\Vehicle::create([
-      'manufacturer' => $parsed_xml['manufacturer'],
-      'model' => $parsed_xml['model'],
-      'type' => $parsed_xml['type'],
-      'usage' => $parsed_xml['usage'],
-      'license_plate' => $parsed_xml['license_plate'],
-      'weight_category' => $parsed_xml['weight_category'],
-      'no_seats' => $parsed_xml['no_seats'],
-      'has_trailer' => $parsed_xml['has_trailer'],
-      'owner_name' => $parsed_xml['owner_name'],
-      'owner_company' => $parsed_xml['owner_company'],
-      'owner_profession' => $parsed_xml['owner_profession'],
-      'transmission' => $parsed_xml['transmission'],
-      'colour' => $parsed_xml['colour'],
-      'is_hgv' => $parsed_xml['is_hgv'],
-      'no_doors' => $parsed_xml['no_doors'],
-      'sunroof' => $parsed_xml['sunroof'],
-      'has_gps' => $parsed_xml['has_gps'],
-      'no_wheels' => $parsed_xml['no_wheels'],
-      'engine_cc' => $parsed_xml['engine_cc'],
-      'fuel_type' => $parsed_xml['fuel_type']
+      'manufacturer' => $vehicle['manufacturer'],
+      'model' => $vehicle['model'],
+      'type' => $vehicle->type,
+      'usage' => $vehicle->usage,
+      'license_plate' => $vehicle->license_plate,
+      'weight_category' => $vehicle->weight_category,
+      'no_seats' => $vehicle->no_seats,
+      'has_trailer' => $vehicle->has_trailer,
+      'owner_name' => $vehicle->owner_name,
+      'owner_company' => $vehicle->owner_company,
+      'owner_profession' => $vehicle->owner_profession,
+      'transmission' => $vehicle->transmission,
+      'colour' => $vehicle->colour,
+      'is_hgv' => $vehicle->is_hgv,
+      'no_doors' => $vehicle->no_doors,
+      'sunroof' => $vehicle->sunroof,
+      'has_gps' => $vehicle->has_gps,
+      'no_wheels' => $vehicle->no_wheels,
+      'engine_cc' => $vehicle->engine_cc,
+      'fuel_type' => $vehicle->fuel_type
     ]);
     $instance->save();
   }

@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/vehicles', 'VehicleController@show');
+Route::get('/vehicles', 'VehicleController@index');
